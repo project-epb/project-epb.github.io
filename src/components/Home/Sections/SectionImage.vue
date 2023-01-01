@@ -5,7 +5,7 @@ BaseSection
     subtitle='EPB Image Hosting',
     :image-src='imageSrc',
     more-href='https://img.wjghj.cn/',
-    more-text='嘿嘿……诶嘿嘿'
+    more-text='诶嘿嘿……不许色色'
   )
     template(#description)
       p 基于 Chevereto 的图床。不开放访客上传，大多数内容都是小鱼君的私人珍藏。

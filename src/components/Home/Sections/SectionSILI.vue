@@ -9,7 +9,8 @@ BaseSection
   )
     template(#description)
       p “您好，我是SILI”——『IM机械姬』SILI-t138-[Manura]-Invoke-II@LD(A)
-      p 基于 Koishi.js v4开发~
+      p 基于 Koishi.js v4 开发的聊天机器人~
+      p 加群以调戏。
 </template>
 
 <script setup lang="ts">

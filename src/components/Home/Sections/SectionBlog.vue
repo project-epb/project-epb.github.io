@@ -5,10 +5,12 @@ BaseSection
     subtitle='《将来过去时》原作者の个人博客',
     :image-src='imageSrc',
     more-href='https://blog.wjghj.cn/',
-    more-text='没啥特别的，但可以瞅一眼'
+    more-text='真的吗，我不信'
   )
     template(#description)
-      p 《将来过去时》是机智的小鱼君笔下的系列小说，分为现在、过去、将来三个主要篇章，另外有“现在”的前传故事《成为游戏管理员》以及“将来”的番外故事《我可能是开启了人机模式》两个官方外传。
+      p 哟吼，欢迎光临「小鱼君的博客」
+      p ——诶诶诶，别走嘛！
+      p 这里说不定有什么好玩的东西等你发现呐~
 </template>
 
 <script setup lang="ts">
