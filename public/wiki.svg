@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Vectornator Pro for iOS (http://vectornator.io/) -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" viewBox="0 0 500 500">
+<metadata>
+<vectornator:setting key="DisplayWhiteBackground" value="0"/>
+<vectornator:setting key="RulersVisible" value="1"/>
+<vectornator:setting key="GridSpacing" value="36"/>
+<vectornator:setting key="Units" value="Pixels"/>
+<vectornator:setting key="DynamicGuides" value="1"/>
+<vectornator:setting key="SnapToPoints" value="0"/>
+<vectornator:setting key="CMYKEnabledKey" value="0"/>
+<vectornator:setting key="SnapToGrid" value="0"/>
+<vectornator:setting key="ShowGrid" value="0"/>
+<vectornator:setting key="SnapToEdges" value="0"/>
+</metadata>
+<defs>
+<linearGradient y1="365.06" id="LinearGradient" x1="223.391" y2="23.5693" x2="223.391" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1 0 0 1 0 0)">
+<stop stop-color="#909090" offset="0"/>
+<stop stop-color="#e3e3e3" offset="1"/>
+</linearGradient>
+<linearGradient y1="412.965" id="LinearGradient_2" x1="231.167" y2="365.755" x2="231.167" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1 0 0 1 0 0)">
+<stop stop-color="#cbcbcb" offset="0"/>
+<stop stop-color="#ffffff" offset="1"/>
+</linearGradient>
+<linearGradient y1="412.965" id="LinearGradient_3" x1="231.167" y2="365.755" x2="231.167" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.745477 0 0 0.731517 193.858 -254.129)">
+<stop stop-color="#cbcbcb" offset="0"/>
+<stop stop-color="#ffffff" offset="1"/>
+</linearGradient>
+<linearGradient y1="268.141" id="LinearGradient_4" x1="259.034" y2="313.549" x2="259.034" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1 0 0 1 0 0)">
+<stop stop-color="#d1d1d1" offset="0"/>
+<stop stop-color="#ffffff" offset="1"/>
+</linearGradient>
+</defs>
+<g id="wiki-logo" vectornator:layerName="wiki-logo">
+<path stroke="#000000" stroke-width="5.45" d="M270.625+55.4688C262.894+56.0136+255.587+61.0459+253.594+73.0625C251.84+83.6336+251.29+101.409+248.125+122C225.667+124.543+200.52+128.815+171.594+134.938C171.594+134.938+142.821+144.565+134.188+160.25C121.802+182.75+133.208+212.669+180.938+202.062C197.714+198.334+211.751+194.848+224.406+191.656C201.954+229.161+161.744+262.816+126.344+290.156C48.4213+350.337+34.8438+447.75+34.8438+447.75C79.3668+373.702+222.875+358.312+222.875+358.312C222.875+358.312+247.337+268.294+271.156+223.75C279.515+208.118+285.092+193.165+289.062+179.062C298.927+179.191+307.045+181.609+314.906+187.188C419.793+261.612+267.469+364.438+267.469+364.438C267.469+364.438+370.601+326.82+398.625+268C422.132+218.661+419.595+153.785+349.062+128.312C334.057+122.893+317.063+119.995+297.281+119.406C297.268+114.069+297.133+109.039+296.875+104.688C295.669+84.3426+292.219+70.3125+292.219+70.3125C291.218+61.4868+280.564+54.7683+270.625+55.4688Z" fill="url(#LinearGradient)" stroke-linecap="round" opacity="1" stroke-linejoin="round"/>
+<path stroke="#000000" stroke-width="5.45" d="M198.467+412.965C198.467+394.549+213.107+379.62+231.167+379.62C249.227+379.62+263.867+394.549+263.867+412.965C263.867+431.382+249.227+446.311+231.167+446.311C213.107+446.311+198.467+431.382+198.467+412.965Z" fill="url(#LinearGradient_2)" stroke-linecap="round" opacity="1" stroke-linejoin="round"/>
+<path stroke="#000000" stroke-width="5.45" d="M341.81+47.9622C341.81+34.4904+352.724+23.5693+366.188+23.5693C379.651+23.5693+390.565+34.4904+390.565+47.9622C390.565+61.434+379.651+72.3551+366.188+72.3551C352.724+72.3551+341.81+61.434+341.81+47.9622Z" fill="url(#LinearGradient_3)" stroke-linecap="round" opacity="1" stroke-linejoin="round"/>
+<path stroke="#000000" stroke-width="5.45" d="M413.712+186.903C425.375+192.141+436.661+190.45+439.139+212.683C443.397+250.884+392.138+271.923+283.266+290.937C174.393+309.95+79.0434+304.207+74.7851+266.006C73.1081+250.961+86.0655+237.211+108.045+221.8C77.772+240.559+57.7115+254.4+59.7711+273.055C64.371+314.717+163.608+331.652+281.441+310.886C399.275+290.12+462.809+253.992+458.209+212.329C455.318+186.141+420.071+183.215+413.712+186.903Z" fill="url(#LinearGradient_4)" stroke-linecap="round" opacity="1" stroke-linejoin="round"/>
+</g>
+</svg>

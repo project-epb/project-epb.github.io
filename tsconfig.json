@@ -1,0 +1,16 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "~/*": ["./src/assets/*"],
+      "@com/*": ["./src/components/*"],
+      "@lay/*": ["./src/layouts/*"],
+      "@pg/*": ["./src/pages/*"]
+    }
+  },
+  "vueCompilerOptions": {
+    "plugins": ["@volar/vue-language-plugin-pug"]
+  }
+}

@@ -1,0 +1,28 @@
+---
+import Base from './_base.astro'
+import GlobalHeader from'@com/BaseTemplate/GlobalHeader.vue'
+import GlobalFooter from'@com/BaseTemplate/GlobalFooter.vue'
+
+import '@/styles/page.sass'
+
+export interface Props {
+  content: {
+    title: string
+    description: string
+  }
+}
+
+const { content } = Astro.props
+---
+
+<Base content={content}>
+  <div id="layout-page">
+    <main>
+      <article class="prose">
+        <slot />
+      </article>
+    </main>
+    <GlobalHeader client:only />
+    <GlobalFooter client:only />
+  </div>
+</Base>

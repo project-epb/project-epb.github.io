@@ -1,0 +1,32 @@
+---
+import '@/styles/index.sass'
+import HtmlHead from '@com/BaseTemplate/HtmlHead.astro'
+// import Header from '../components/Header.astro'
+// import Footer from '../components/Footer.astro'
+
+export interface Props {
+  content: {
+    title: string
+    description: string
+  }
+}
+
+const {
+  content: { title, description },
+} = Astro.props
+---
+
+<html lang="en">
+  <head>
+    <HtmlHead title={title} description={description} />
+    <script id="theme-init">
+      const theme = localStorage.getItem('theme')
+      console.info('theme', theme)
+      document.documentElement.dataset.theme = theme
+    </script>
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>

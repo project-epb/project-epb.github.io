@@ -1,0 +1,13 @@
+---
+import Base from '@/layouts/_base.astro'
+import Home from '@com/Home'
+---
+
+<Base
+  content={{
+    title: '',
+    description: '',
+  }}
+>
+  <Home client:only />
+</Base>
