@@ -4,7 +4,7 @@ BaseSection
     title='Chatbot SILI',
     subtitle='万界规划局聊天机器人',
     :image-src='imageSrc',
-    more-href='https://epbureau.notion.site/',
+    more-href='https://github.com/project-epb/Chatbot-SILI',
     more-text='我要做SILI的🐶'
   )
     template(#description)
