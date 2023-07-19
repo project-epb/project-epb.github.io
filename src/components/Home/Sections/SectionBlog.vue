@@ -4,7 +4,7 @@ BaseSection
     title='小鱼君の博客',
     subtitle='《将来过去时》原作者の个人博客',
     :image-src='imageSrc',
-    more-href='https://blog.wjghj.cn/',
+    more-href='https://blog.epb.wiki/',
     more-text='真的吗，我不信'
   )
     template(#description)

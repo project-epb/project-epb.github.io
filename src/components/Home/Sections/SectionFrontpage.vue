@@ -12,7 +12,7 @@ BaseSection
         .subtitle 「万界规划局」项目组
       .flex.gap-4
         a.btn.btn-primary.shadow-md(
-          href='https://blog.wjghj.cn/',
+          href='https://blog.epb.wiki/',
           target='_blank'
         ) 小鱼君博客
         a.btn.btn-secondary.shadow-md(

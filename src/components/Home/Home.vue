@@ -3,11 +3,12 @@
   main
     article
       Swiper.h-screen.w-screen.overflow-hidden(
-        :modules='[Mousewheel, EffectCreative, Pagination]',
+        :modules='[Mousewheel, EffectCreative, Pagination, HashNavigation]',
         direction='vertical',
         mousewheel,
+        hash-navigation,
         effect='creative',
-        :creative-effect='{ prev: { translate: [0, "-2rem", -1], opacity: 0 }, next: { translate: [0, "2rem", 0], opacity: 0 } }',
+        :creative-effect='{ prev: { translate: [0, "-3rem", -1], opacity: 0 }, next: { translate: [0, "3rem", 0], opacity: 0 } }',
         :pagination='{ clickable: true, el: ".pagination" }',
         @progress='onProgress',
         @touch-start='isControl = true',
@@ -16,6 +17,7 @@
         SwiperSlide.overflow-hidden.relative.section(
           v-for='(i, index) in sections',
           :id='`home-section-${i.id}`'
+          :data-hash='`home-slide-${i.id}`'
         )
           Component.z-10(
             :is='i.component',
@@ -31,20 +33,18 @@
 
 <script setup lang="ts">
 import { defineAsyncComponent, ref, shallowRef } from 'vue'
+import type { Swiper as SwType } from 'swiper'
 import {
-  Swiper as SwType,
   Mousewheel,
   EffectCreative,
   Pagination,
-  Navigation,
-} from 'swiper'
+  HashNavigation,
+} from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css/bundle'
 import 'swiper/css/effect-creative'
 import GlobalHeader from '@com/BaseTemplate/GlobalHeader.vue'
 import bgUrl from './images/home_bg.svg'
-import { Icon } from '@vicons/utils'
-// import { up } from '@vicons/fa'
 
 import SectionFrontpage from './Sections/SectionFrontpage.vue'
 import GlobalFooter from '../BaseTemplate/GlobalFooter.vue'
@@ -72,9 +72,7 @@ const sections = shallowRef([
   },
   {
     id: 'sili',
-    component: defineAsyncComponent(
-      () => import('./Sections/SectionSILI.vue')
-    ),
+    component: defineAsyncComponent(() => import('./Sections/SectionSILI.vue')),
   },
   {
     id: 'wiki',
