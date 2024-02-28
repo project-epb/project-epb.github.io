@@ -18,7 +18,7 @@ footer#global-footer.footer.footer-center.p-10.bg-base-200.text-base-content.rou
         href='http://beian.miit.gov.cn',
         target='_blank',
         rel='noopener noreferrer'
-      ) 鄂ICP备18025860号-3
+      ) 鄂ICP备18025860号
 </template>
 
 <script setup lang="ts">
