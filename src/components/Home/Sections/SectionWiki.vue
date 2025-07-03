@@ -4,7 +4,7 @@ BaseSection
     title='小鱼君和他的朋友们',
     subtitle='基于MediaWiki开发',
     :image-src='imageSrc',
-    more-href='https://www.wjghj.cn/wiki/',
+    more-href='https://wiki.epb.wiki/wiki/',
     more-text='难道是传说中的黑历史'
   )
     template(#description)

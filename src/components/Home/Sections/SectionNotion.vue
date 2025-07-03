@@ -4,7 +4,7 @@ BaseSection
     title='万界大百科',
     subtitle='将来过去时官方设定集',
     :image-src='imageSrc',
-    more-href='https://epbureau.notion.site/',
+    more-href='https://epb-wiki.notion.site/',
     more-text='所以小说什么时候发布'
   )
     template(#description)
