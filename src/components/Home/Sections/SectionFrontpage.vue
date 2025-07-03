@@ -16,7 +16,7 @@ BaseSection
           target='_blank'
         ) 小鱼君博客
         a.btn.btn-secondary.shadow-md(
-          href='https://epbureau.notion.site/',
+          href='https://epb-wiki.notion.site/',
           target='_blank'
         ) 官方设定集
 </template>
