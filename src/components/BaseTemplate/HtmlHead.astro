@@ -12,7 +12,12 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image = '/placeholder-social.jpg', keywords = [] } = Astro.props
+const {
+  title,
+  description,
+  image = '/placeholder-social.jpg',
+  keywords = [],
+} = Astro.props
 ---
 
 <!-- Global Metadata -->
@@ -27,8 +32,14 @@ const { title, description, image = '/placeholder-social.jpg', keywords = [] } =
 <!-- Primary Meta Tags -->
 <title>{`${title ? title + ' | ' : ''}Project:EPB - epb.wiki`}</title>
 <meta name="title" content={title} />
-<meta name="description" content={description || '「万界规划局」项目组官方网站,Project:EPB'} />
-<meta name="keywords" content={`${keywords ? keywords.join(',') + ',' : ''}epb,project-epb,everything planning bureau,万界规划局,将来过去时,小鱼君,机智的小鱼君,将来过去时官网,个人博客,个人网站`} />
+<meta
+  name="description"
+  content={description || '「万界规划局」项目组官方网站,Project:EPB'}
+/>
+<meta
+  name="keywords"
+  content={`${keywords ? keywords.join(',') + ',' : ''}epb,project-epb,everything planning bureau,万界规划局,将来过去时,小鱼君,机智的小鱼君,将来过去时官网,个人博客,个人网站`}
+/>
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />

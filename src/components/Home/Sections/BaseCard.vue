@@ -4,24 +4,26 @@
 )
   .text-content.flex-1.space-y-4
     .badge.badge-soft.badge-lg.mb-2(v-if='subtitle') {{ subtitle }}
-    h2.text-3xl.font-extrabold.mb-4.leading-tight.bg-gradient-to-r.from-primary.to-secondary.bg-clip-text.text-transparent(class="md:text-4xl lg:text-5xl")
+    h2.text-3xl.font-extrabold.mb-4.leading-tight.bg-gradient-to-r.from-primary.to-secondary.bg-clip-text.text-transparent(
+      class='md:text-4xl lg:text-5xl'
+    )
       slot(name='title') {{ title }}
-    .desc.text-base.text-base-content.opacity-80.leading-relaxed(class="md:text-lg")
+    .desc.text-base.text-base-content.opacity-80.leading-relaxed(class='md:text-lg')
       slot(name='description') {{ description }}
     .mt-6(v-if='moreHref')
       a.btn.btn-primary.btn-md.gap-2.shadow-lg.transform.transition-all(
-        class="hover:shadow-xl hover:scale-105"
-        :href='moreHref', 
+        class='hover:shadow-xl hover:scale-105',
+        :href='moreHref',
         target='_blank',
         rel='noopener noreferrer'
       ) 
         | {{ moreText }}
         Icon
           ArrowRight
-  
+
   .thumb.flex-1(v-if='imageSrc || iframeSrc')
     .card.bg-base-100.shadow-2xl.border.border-base-300.overflow-hidden.transform.transition-all(
-      v-if='imageSrc'
+      v-if='imageSrc',
       class='max-h-[50vh] hover:scale-105 hover:shadow-3xl'
     )
       img.w-full.h-full.object-cover(
@@ -33,7 +35,11 @@
     .card.bg-base-100.shadow-2xl.border.border-base-300.overflow-hidden.aspect-video(
       v-else-if='iframeSrc'
     )
-      a.block.h-full(:href='iframeSrc', target='_blank' rel='noopener noreferrer')
+      a.block.h-full(
+        :href='iframeSrc',
+        target='_blank',
+        rel='noopener noreferrer'
+      )
         iframe.w-full.h-full.border-none.pointer-events-none(
           :src='iframeSrc',
           loading='lazy'
