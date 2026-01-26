@@ -2,7 +2,7 @@
 #view-home.relative.min-h-screen.bg-base-100
   GlobalHeader.fixed.top-0.left-0.w-full.z-50.backdrop-blur-md.bg-base-100.bg-opacity-80
 
-  main.relative
+  main.relative.z-1
     //- 渲染所有 Section
     section.home-section.transition-all.duration-1000.ease-out(
       v-for='(item, index) in sections',
@@ -20,17 +20,17 @@
         :data-is-last='index + 1 === sections.length || undefined'
       )
 
-  GlobalFooter
+  GlobalFooter.z-1
+
+  .home-section-backdrop(:style='`background-image: url(${bgImage.src})`')
 </template>
 
 <script setup lang="ts">
 import {
   defineAsyncComponent,
   ref,
-  shallowRef,
   onMounted,
   onUnmounted,
-  markRaw,
   type Component,
 } from 'vue'
 import GlobalHeader from '@com/BaseTemplate/GlobalHeader.vue'
@@ -39,11 +39,11 @@ import SectionCard from './Sections/SectionCard.vue'
 import GlobalFooter from '../BaseTemplate/GlobalFooter.vue'
 
 // 导入图片资源
+import bgImage from './images/home_bg.svg'
 import blogImage from './images/blog_site.png'
 import notionImage from './images/notion_site.png'
 import siliImage from './images/sili_desc.png'
 import wikiImage from './images/legacy_wiki_site.png'
-import imageHostingImage from './images/image_hosting_site.png'
 
 // 定义卡片式 section 的数据
 const cardSections: {
@@ -210,4 +210,17 @@ onUnmounted(() => {
 <style scoped lang="sass">
 .home-section
   scroll-margin-top: calc(64px + 1rem) // 考虑到固定头部的高度
+
+.home-section-backdrop
+  background-position: center
+  background-repeat: no-repeat
+  background-size: cover
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 0
+  opacity: 0.25
+  pointer-events: none
 </style>
