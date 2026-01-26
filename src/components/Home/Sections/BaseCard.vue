@@ -1,26 +1,43 @@
 <template lang="pug">
-.home-section-card.w-full.h-full.flex.justify-center.items-center.max-w-screen-md(
-  class='max-md:flex-col-reverse max-md:gap-4 md:gap-8'
+.home-section-card.w-full.flex.justify-center.items-center.max-w-6xl.mx-auto.px-4(
+  :class='isReverse ? "flex-row-reverse max-md:flex-col-reverse md:gap-16 max-md:gap-8" : "flex-row max-md:flex-col-reverse md:gap-16 max-md:gap-8"'
 )
-  .text-content.flex-1(class='max-sm:padd')
-    h2.text-4xl.font-bold.flex-1.mb-2: slot(name='title') {{ title }}
-    .subtitle.text-xl.opacity-80.flex-1.mb-6: slot(name='subtitle') {{ subtitle }}
-    .desc.opacity-80: slot(name='description') {{ description }}
-    .mt-4(v-if='moreHref')
-      a.btn.btn-outline.btn-sm.btn-secondary(:href='moreHref', target='_blank') {{ moreText }}
+  .text-content.flex-1.space-y-4
+    .badge.badge-soft.badge-lg.mb-2(v-if='subtitle') {{ subtitle }}
+    h2.text-3xl.font-extrabold.mb-4.leading-tight.bg-gradient-to-r.from-primary.to-secondary.bg-clip-text.text-transparent(class="md:text-4xl lg:text-5xl")
+      slot(name='title') {{ title }}
+    .desc.text-base.text-base-content.opacity-80.leading-relaxed(class="md:text-lg")
+      slot(name='description') {{ description }}
+    .mt-6(v-if='moreHref')
+      a.btn.btn-primary.btn-md.gap-2.shadow-lg.transform.transition-all(
+        class="hover:shadow-xl hover:scale-105"
+        :href='moreHref', 
+        target='_blank',
+        rel='noopener noreferrer'
+      ) 
+        | {{ moreText }}
         Icon
           ArrowRight
-  .thumb.image-thumb(class='md:flex-1', v-if='imageSrc')
-    img.block.rounded-lg.shadow-md(
-      :src='imageSrc || "https://sdfsdf.dev/1200x800.jpg,252525,ffffff"',
-      loading='lazy'
+  
+  .thumb.flex-1(v-if='imageSrc || iframeSrc')
+    .card.bg-base-100.shadow-2xl.border.border-base-300.overflow-hidden.transform.transition-all(
+      v-if='imageSrc'
+      class='max-h-[50vh] hover:scale-105 hover:shadow-3xl'
     )
-  .thumb.iframe-thumb(v-else-if='iframeSrc')
-    a(:href='iframeSrc', target='_blank')
-      iframe.block.border-none.rounded-lg.shadow-md.pointer-events-none(
-        :src='iframeSrc',
-        loading='lazy'
+      img.w-full.h-full.object-cover(
+        :src='imageSrc || "https://sdfsdf.dev/1200x800.jpg,252525,ffffff"',
+        loading='lazy',
+        :alt='title'
       )
+
+    .card.bg-base-100.shadow-2xl.border.border-base-300.overflow-hidden.aspect-video(
+      v-else-if='iframeSrc'
+    )
+      a.block.h-full(:href='iframeSrc', target='_blank' rel='noopener noreferrer')
+        iframe.w-full.h-full.border-none.pointer-events-none(
+          :src='iframeSrc',
+          loading='lazy'
+        )
 </template>
 
 <script setup lang="ts">
@@ -36,21 +53,27 @@ withDefaults(
     iframeSrc?: string
     moreText?: string
     moreHref?: string
+    isReverse?: boolean
   }>(),
   {
     title: '标题',
     moreText: '查看更多',
+    isReverse: false,
   }
 )
 </script>
 
 <style scoped lang="sass">
-.home-section-card
-  margin: 0 auto
+.badge-soft
+  background-color: oklch(90% 0.05 240)
+  color: oklch(40% 0.15 240)
+  border: none
 
-@media (max-width: 765px)
+@media (max-width: 768px)
   .home-section-card
-    padding-top: 64px
-  .text-content
-    margin: 0 2rem
+    padding: 0 1rem
+
+:global(.dark) .badge-soft
+  background-color: oklch(30% 0.08 240)
+  color: oklch(80% 0.1 240)
 </style>

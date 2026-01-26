@@ -1,4 +1,5 @@
 ---
+import '@/styles/global.css'
 import '@/styles/index.sass'
 import HtmlHead from '@com/BaseTemplate/HtmlHead.astro'
 // import Header from '../components/Header.astro'
@@ -19,10 +20,11 @@ const {
 <html lang="en">
   <head>
     <HtmlHead title={title} description={description} />
-    <script id="theme-init">
+    <script is:inline id="theme-init">
       const theme = localStorage.getItem('theme')
-      console.info('theme', theme)
-      document.documentElement.dataset.theme = theme
+      if (theme) {
+        document.documentElement.dataset.theme = theme
+      }
     </script>
   </head>
 
