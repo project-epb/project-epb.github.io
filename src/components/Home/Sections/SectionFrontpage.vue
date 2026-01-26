@@ -15,21 +15,20 @@ BaseSection(:is-hero='true')
 
     .hero-content.text-center.flex-col.relative.z-10.px-4
       //- Logo区域
-      .hero-logo.mb-8.transform.transition-all.duration-500(class='hover:scale-105')
-        .bg-base-100.rounded-2xl.shadow-xl.p-8
-          img.w-full.max-w-md(src='/wiki-wordmark.svg', alt='EPB Logo')
+      .hero-logo.mb-8.transform.transition-all.duration-500
+        img(src='/wiki-wordmark.svg', alt='EPB Logo' class='w-[300px] max-w-[80vw]')
 
       //- 标题区域
       .first-heading.max-w-screen-md
-        h1.mb-6.text-5xl.font-extrabold.tracking-tight(class='md:text-6xl lg:text-7xl')
+        h1.mb-6.text-3xl.font-extrabold.tracking-tight.flex.flex-wrap.justify-center.gap-x-2.break-words(class='md:text-4xl lg:text-5xl')
           span.text-primary <b>E</b>verything
           span.text-secondary <b>P</b>lanning
           span.text-accent <b>B</b>ureau
-        p.subtitle.text-xl.mb-8.text-base-content.opacity-80.font-medium(
-          class='md:text-2xl'
+        p.subtitle.mb-2.text-base-content.opacity-80.font-medium(
+          class='md:text-xl'
         ) 「万界规划局」项目组
         p.text-base.max-w-2xl.mx-auto.mb-10.text-base-content.opacity-70.leading-relaxed(
-          class='md:text-lg'
+          class='md:text-md'
         )
           | 探索《将来过去时》的无限可能，
           | 一个专注于创作与分享的虚拟社团
@@ -38,8 +37,9 @@ BaseSection(:is-hero='true')
       .flex.flex-wrap.gap-4.justify-center
         a.btn.btn-primary.btn-lg.shadow-lg.transform.transition-all(
           class='hover:shadow-xl hover:scale-105',
-          href='https://blog.epb.wiki/',
-          target='_blank'
+          href='https://blog.epb.wiki/?utm_source=epb_home&utm_medium=home_hero',
+          target='_blank',
+          rel='noopener noreferrer'
         )
           svg.w-5.h-5.mr-2(
             xmlns='http://www.w3.org/2000/svg',
@@ -58,7 +58,8 @@ BaseSection(:is-hero='true')
         a.btn.btn-secondary.btn-lg.shadow-lg.transform.transition-all(
           class='hover:shadow-xl hover:scale-105',
           href='https://epb-wiki.notion.site/',
-          target='_blank'
+          target='_blank',
+          rel='noopener noreferrer'
         )
           svg.w-5.h-5.mr-2(
             xmlns='http://www.w3.org/2000/svg',
@@ -83,6 +84,7 @@ import BaseSection from './BaseSection.vue'
 <style scoped lang="sass">
 h1 b
   font-weight: 900
+  font-size: 1.25em
 
 @keyframes float
   0%, 100%
