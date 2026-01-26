@@ -20,7 +20,7 @@
         :data-is-last='index + 1 === sections.length || undefined'
       )
 
-  GlobalFooter.z-1
+  GlobalFooter.relative.z-1
 
   .home-section-backdrop(:style='`background-image: url(${bgImage.src})`')
 </template>
