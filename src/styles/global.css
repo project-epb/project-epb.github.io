@@ -1,0 +1,125 @@
+@import 'tailwindcss';
+@plugin 'daisyui';
+
+/* Light Theme - 年轻明快的配色 */
+@plugin 'daisyui/theme' {
+  name: 'light';
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  /* Base colors - 清新的白色背景 */
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(98% 0.005 240);
+  --color-base-300: oklch(95% 0.01 240);
+  --color-base-content: oklch(25% 0.02 260);
+
+  /* Primary - 明快的蓝色 */
+  --color-primary: oklch(60% 0.25 250);
+  --color-primary-content: oklch(100% 0 0);
+
+  /* Secondary - 活力橙色 */
+  --color-secondary: oklch(70% 0.2 60);
+  --color-secondary-content: oklch(100% 0 0);
+
+  /* Accent - 青春粉色 */
+  --color-accent: oklch(65% 0.25 340);
+  --color-accent-content: oklch(100% 0 0);
+
+  /* Neutral - 柔和灰色 */
+  --color-neutral: oklch(30% 0.02 260);
+  --color-neutral-content: oklch(98% 0.005 260);
+
+  /* Info - 信息蓝 */
+  --color-info: oklch(65% 0.2 230);
+  --color-info-content: oklch(100% 0 0);
+
+  /* Success - 成功绿 */
+  --color-success: oklch(65% 0.2 150);
+  --color-success-content: oklch(100% 0 0);
+
+  /* Warning - 警告黄 */
+  --color-warning: oklch(75% 0.2 85);
+  --color-warning-content: oklch(25% 0.02 85);
+
+  /* Error - 错误红 */
+  --color-error: oklch(60% 0.25 25);
+  --color-error-content: oklch(100% 0 0);
+
+  /* Border radius - 现代圆角 */
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+
+  /* Base sizes */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* Border size */
+  --border: 1px;
+
+  /* Effects */
+  --depth: 1;
+  --noise: 0;
+}
+
+/* Dark Theme - 柔和的暗色模式 */
+@plugin 'daisyui/theme' {
+  name: 'dark';
+  prefersdark: true;
+  color-scheme: dark;
+
+  /* Base colors - 深色背景 */
+  --color-base-100: oklch(20% 0.015 260);
+  --color-base-200: oklch(17% 0.02 260);
+  --color-base-300: oklch(14% 0.025 260);
+  --color-base-content: oklch(92% 0.01 260);
+
+  /* Primary - 柔和蓝色 */
+  --color-primary: oklch(70% 0.2 250);
+  --color-primary-content: oklch(20% 0.015 260);
+
+  /* Secondary - 温暖黄色 */
+  --color-secondary: oklch(75% 0.18 80);
+  --color-secondary-content: oklch(20% 0.015 260);
+
+  /* Accent - 柔和粉色 */
+  --color-accent: oklch(72% 0.2 340);
+  --color-accent-content: oklch(20% 0.015 260);
+
+  /* Neutral - 深灰色 */
+  --color-neutral: oklch(25% 0.02 260);
+  --color-neutral-content: oklch(92% 0.01 260);
+
+  /* Info - 信息蓝 */
+  --color-info: oklch(70% 0.18 230);
+  --color-info-content: oklch(20% 0.015 260);
+
+  /* Success - 成功绿 */
+  --color-success: oklch(68% 0.18 150);
+  --color-success-content: oklch(20% 0.015 260);
+
+  /* Warning - 警告黄 */
+  --color-warning: oklch(78% 0.18 85);
+  --color-warning-content: oklch(20% 0.015 260);
+
+  /* Error - 错误红 */
+  --color-error: oklch(65% 0.22 25);
+  --color-error-content: oklch(95% 0.005 25);
+
+  /* Border radius - 现代圆角 */
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.75rem;
+
+  /* Base sizes */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* Border size */
+  --border: 1px;
+
+  /* Effects */
+  --depth: 1;
+  --noise: 0;
+}
