@@ -4,7 +4,7 @@
 )
   slot
   a.jump-anchor.cursor-pointer.text-primary.transition-colors(
-    class="hover:text-secondary"
+    class='hover:text-secondary',
     v-if='showJumpAnchor',
     @click='scrollNext'
   )

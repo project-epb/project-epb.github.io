@@ -1,6 +1,5 @@
 <template lang="pug">
 #view-home.relative.min-h-screen.bg-base-100
-
   GlobalHeader.fixed.top-0.left-0.w-full.z-50.backdrop-blur-md.bg-base-100.bg-opacity-80
 
   main.relative
@@ -10,7 +9,7 @@
       :key='item.id',
       :id='`section-${item.id}`',
       ref='sectionRefs',
-      :class='{  "min-h-screen flex flex-col justify-center": item.id === "frontpage", "py-16 md:py-24": item.id !== "frontpage" && item.id !== "footer",  "opacity-0 translate-y-12": !visibleSections.has(index),  "opacity-100 translate-y-0": visibleSections.has(index)   }'
+      :class='{ "min-h-screen flex flex-col justify-center": item.id === "frontpage", "py-16 md:py-24": item.id !== "frontpage" && item.id !== "footer", "opacity-0 translate-y-12": !visibleSections.has(index), "opacity-100 translate-y-0": visibleSections.has(index) }'
     )
       Component.w-full(
         :is='item.component',
@@ -61,12 +60,10 @@ const cardSections: {
     title: '沃利杰诺·梅因',
     subtitle: '看板娘',
     imageSrc: 'https://r2.epb.wiki/artworks/Original.Main/20231108.jpeg',
-    moreHref: 'https://zh.moegirl.org.cn/%E6%B2%83%E5%88%A9%E6%9D%B0%E8%AF%BA%C2%B7%E6%A2%85%E5%9B%A0',
+    moreHref:
+      'https://zh.moegirl.org.cn/%E6%B2%83%E5%88%A9%E6%9D%B0%E8%AF%BA%C2%B7%E6%A2%85%E5%9B%A0',
     moreText: '可爱捏',
-    description: [
-      '她是小鱼君最可爱的女儿~',
-      '可爱捏',
-    ],
+    description: ['她是小鱼君最可爱的女儿~', '可爱捏'],
   },
   {
     id: 'blog',
@@ -125,9 +122,7 @@ const cardSections: {
     imageSrc: 'https://r2.epb.wiki/icons/inpageedit/ipe-next-uwu.png',
     moreHref: 'https://www.ipe.wiki/',
     moreText: '✏️ 快速编辑',
-    description: [
-      '🚀 模块化、可扩展的 MediaWiki 超级增强插件',
-    ],
+    description: ['🚀 模块化、可扩展的 MediaWiki 超级增强插件'],
   },
   {
     id: 'flaredrive',
