@@ -1,6 +1,43 @@
 @import 'tailwindcss';
 @plugin 'daisyui';
 
+/* 全局平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 自定义滚动条 - 二次元风格 */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(var(--color-base-200));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #8a6eff, #ff6bb5);
+  border-radius: 10px;
+  border: 2px solid oklch(var(--color-base-200));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #ff6bb5, #6bcbff);
+}
+
+/* 文字选中效果 */
+::selection {
+  background: rgba(138, 110, 255, 0.3);
+  color: inherit;
+}
+
+::-moz-selection {
+  background: rgba(138, 110, 255, 0.3);
+  color: inherit;
+}
+
 /* Light Theme - 年轻明快的配色 */
 @plugin 'daisyui/theme' {
   name: 'light';
