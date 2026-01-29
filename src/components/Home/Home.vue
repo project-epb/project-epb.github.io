@@ -1,15 +1,15 @@
 <template lang="pug">
-#view-home.relative.min-h-screen.bg-base-100
-  GlobalHeader.fixed.top-0.left-0.w-full.z-50.backdrop-blur-md.bg-base-100.bg-opacity-80
+#view-home.relative.min-h-screen.bg-base-100.overflow-x-hidden
+  GlobalHeader.fixed.top-0.left-0.w-full.z-50.backdrop-blur-md.bg-base-100.bg-opacity-80.shadow-sm
 
-  main.relative.z-1
+  main.relative.z-10
     //- 渲染所有 Section
     section.home-section.transition-all.duration-1000.ease-out(
       v-for='(item, index) in sections',
       :key='item.id',
       :id='`section-${item.id}`',
       ref='sectionRefs',
-      :class='{ "min-h-screen flex flex-col justify-center": item.id === "frontpage", "py-16 md:py-24": item.id !== "frontpage" && item.id !== "footer", "opacity-0 translate-y-12": !visibleSections.has(index), "opacity-100 translate-y-0": visibleSections.has(index) }'
+      :class='{ "h-screen": item.id === "frontpage", "py-16 md:py-24": item.id !== "frontpage" && item.id !== "footer", "opacity-0 translate-y-12": !visibleSections.has(index), "opacity-100 translate-y-0": visibleSections.has(index) }'
     )
       Component.w-full(
         :is='item.component',
@@ -20,8 +20,9 @@
         :data-is-last='index + 1 === sections.length || undefined'
       )
 
-  GlobalFooter.relative.z-1
+  GlobalFooter.relative.z-10
 
+  //- 带有简单几何元素的动态背景
   .home-section-backdrop(:style='`background-image: url(${bgImage.src})`')
 </template>
 
@@ -63,7 +64,11 @@ const cardSections: {
     moreHref:
       'https://zh.moegirl.org.cn/%E6%B2%83%E5%88%A9%E6%9D%B0%E8%AF%BA%C2%B7%E6%A2%85%E5%9B%A0',
     moreText: '可爱捏',
-    description: ['她是小鱼君最可爱的女儿~', '可爱捏'],
+    description: [
+      '沃利杰诺·梅因（Original/Main），世界本源的化身，将来过去时宇宙中的「唯一神」。',
+      '小鱼君最可爱的女儿~',
+      '尾巴，摸一摸——呜哇！！！（咚，被打了）',
+    ],
   },
   {
     id: 'blog',
@@ -99,9 +104,9 @@ const cardSections: {
     moreHref: 'https://github.com/project-epb/Chatbot-SILI',
     moreText: '我要做SILI的🐶',
     description: [
-      '"您好，我是SILI"——『IM机械姬』SILI-t138-[Manura]-Invoke-II@LD(A)',
+      '“您好，我是SILI”——『IM机械姬』SILI-t138-[Manura]-Invoke-II@LD(A)',
       '基于 Koishi.js v4 开发的聊天机器人~',
-      '加群以调戏。',
+      '加群以调戏（据说碎嘴子是 ToU 的一部分？）',
     ],
   },
   {
@@ -112,7 +117,9 @@ const cardSections: {
     moreHref: 'https://wiki.epb.wiki/wiki/',
     moreText: '难道是传说中的黑历史',
     description: [
-      '经典怀旧款《将来过去时》设定集 wiki 网站，也就是《小鱼君和他的朋友们》。虽然这个网站已经不再维护，但依旧保有大量的神秘知识。',
+      '经典怀旧款《将来过去时》设定集 wiki 网站。',
+      '虽然这个网站已经不再维护，但依旧保有大量的神秘知识。',
+      '我去，老资历 MediaWiki！'
     ],
   },
   {
@@ -122,7 +129,10 @@ const cardSections: {
     imageSrc: 'https://r2.epb.wiki/icons/inpageedit/ipe-next-uwu.png',
     moreHref: 'https://www.ipe.wiki/',
     moreText: '✏️ 快速编辑',
-    description: ['🚀 模块化、可扩展的 MediaWiki 超级增强插件'],
+    description: [
+      '模块化、可扩展的 MediaWiki 超级增强插件 🚀',
+      '可热插拔的 TypeScript 黑科技！',
+    ],
   },
   {
     id: 'flaredrive',
@@ -208,8 +218,17 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="sass">
+#view-home
+  position: relative
+  background: linear-gradient(180deg, oklch(var(--color-base-100)) 0%, oklch(var(--color-base-200)) 50%, oklch(var(--color-base-100)) 100%)
+
 .home-section
-  scroll-margin-top: calc(64px + 1rem) // 考虑到固定头部的高度
+  scroll-margin-top: 0 // Hero 区域不需要 margin
+  position: relative
+
+  // 非 Hero 区域保留原有的 scroll margin
+  &:not(#section-frontpage)
+    scroll-margin-top: calc(64px + 1rem)
 
 .home-section-backdrop
   background-position: center
@@ -223,4 +242,25 @@ onUnmounted(() => {
   z-index: 0
   opacity: 0.25
   pointer-events: none
+
+// Hero 区域特殊样式
+#section-frontpage
+  height: 100vh
+  max-height: 100vh
+  min-height: 100vh
+
+  // 支持动态视口高度（移动端地址栏）
+  @supports (height: 100dvh)
+    height: 100dvh
+    max-height: 100dvh
+    min-height: 100dvh
+
+// 响应式优化
+@media (max-width: 768px)
+  #view-home
+    overflow-x: hidden
+
+  .home-section:not(#section-frontpage)
+    padding-left: 1rem
+    padding-right: 1rem
 </style>

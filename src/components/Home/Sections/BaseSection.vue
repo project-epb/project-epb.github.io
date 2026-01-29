@@ -42,7 +42,7 @@ function scrollNext(e: MouseEvent) {
 <style scoped lang="sass">
 .jump-anchor
   position: absolute
-  bottom: 2rem
+  bottom: 0rem
   left: 50%
   transform: translateX(-50%)
   font-size: 2.5rem
@@ -61,9 +61,9 @@ function scrollNext(e: MouseEvent) {
 
 @keyframes jump-btn
   from
-    bottom: 2rem
+    bottom: 0rem
     transform: translateX(-50%) translateY(0)
   to
-    bottom: 2.5rem
+    bottom: 1rem
     transform: translateX(-50%) translateY(-0.25rem)
 </style>
