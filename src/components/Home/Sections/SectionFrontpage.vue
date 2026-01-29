@@ -1,9 +1,11 @@
 <template lang="pug">
 BaseSection(:is-hero='true')
   .hero.h-screen.relative.overflow-hidden.flex.items-center.justify-center
-    .hero-content.text-center.flex-col.relative.z-10.px-4.w-full.max-w-6xl.py-20
+    .hero-content.text-center.flex-col.relative.z-10.px-4.w-full.max-w-6xl.py-20(
+      :class="{ 'preload-anim': preloadAnim }"
+    )
       //- Logo区域 - 带入场动画
-      .hero-logo.mb-6(ref='logoRef', class='md:mb-8')
+      .hero-logo.mb-6(ref='logoRef', data-anim='logo', class='md:mb-8')
         .logo-wrapper.relative.inline-block
           //- 发光效果 - 降低强度
           .absolute.inset-0.blur-xl.opacity-20.rounded-full(
@@ -18,14 +20,16 @@ BaseSection(:is-hero='true')
         //- Logo下方的装饰线 - 简化
         .flex.justify-center.items-center.gap-3.mt-4(class='md:gap-4 md:mt-5')
           .h-px.w-12.bg-gradient-to-r.from-transparent.via-primary.to-transparent.opacity-70(
-            ref='decorLine1'
+          ref='decorLine1',
+          data-anim='decor-line'
           )
           .flex(class='gap-1.5')
-            .rounded-full.bg-primary.opacity-80(ref='decorDot1', class='w-1.5 h-1.5')
-            .rounded-full.bg-secondary.opacity-80(ref='decorDot2', class='w-1.5 h-1.5')
-            .rounded-full.bg-accent.opacity-80(ref='decorDot3', class='w-1.5 h-1.5')
+          .rounded-full.bg-primary.opacity-80(ref='decorDot1', data-anim='decor-dot', class='w-1.5 h-1.5')
+          .rounded-full.bg-secondary.opacity-80(ref='decorDot2', data-anim='decor-dot', class='w-1.5 h-1.5')
+          .rounded-full.bg-accent.opacity-80(ref='decorDot3', data-anim='decor-dot', class='w-1.5 h-1.5')
           .h-px.w-12.bg-gradient-to-r.from-transparent.via-accent.to-transparent.opacity-70(
-            ref='decorLine2'
+          ref='decorLine2',
+          data-anim='decor-line'
           )
 
       //- 标题区域
@@ -38,7 +42,8 @@ BaseSection(:is-hero='true')
             v-for='(word, index) in titleWords',
             :key='index',
             :ref='(el) => setTitleWordRef(el, index)',
-            :style='{ color: word.color }'
+            :style='{ color: word.color }',
+            data-anim='title-word'
           )
             span.relative.z-10 {{ word.text }}
             //- 减弱发光效果
@@ -47,7 +52,7 @@ BaseSection(:is-hero='true')
             )
 
         //- 副标题
-        .subtitle-wrapper.space-y-3(ref='subtitleRef', class='md:space-y-4')
+        .subtitle-wrapper.space-y-3(ref='subtitleRef', data-anim='subtitle', class='md:space-y-4')
           p.subtitle.text-lg.text-base-content.opacity-90.font-bold.tracking-wide(
             class='md:text-xl lg:text-2xl'
           )
@@ -65,6 +70,7 @@ BaseSection(:is-hero='true')
       //- 按钮组 - 带动画
       .flex.flex-wrap.gap-4.justify-center(
         ref='buttonsRef',
+        data-anim='buttons',
         class='md:gap-5'
       )
         a.btn.btn-primary.btn-lg.shadow-2xl.group.relative.overflow-hidden.transition-all.duration-300(
@@ -149,12 +155,20 @@ import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import BaseSection from './BaseSection.vue'
 
+const prefersReducedMotion =
+  typeof window !== 'undefined' &&
+  typeof window.matchMedia === 'function' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
 // 彩色标题文字
 const titleWords = [
   { text: 'Everything', color: 'var(--color-primary)' },
   { text: 'Planning', color: 'var(--color-secondary)' },
   { text: 'Bureau', color: 'var(--color-accent)' },
 ]
+
+// Prevent initial paint "flash" before GSAP runs.
+const preloadAnim = ref(!prefersReducedMotion)
 
 const titleWordRefs = ref<(HTMLElement | null)[]>([])
 const logoRef = ref<HTMLElement | null>(null)
@@ -182,6 +196,11 @@ function scrollToNext() {
 }
 
 onMounted(() => {
+  if (prefersReducedMotion) {
+    preloadAnim.value = false
+    return
+  }
+
   // 创建主时间轴
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
@@ -192,8 +211,8 @@ onMounted(() => {
       opacity: 1,
       scale: 1,
       y: 0,
-      duration: 1.2,
-      ease: 'elastic.out(1, 0.6)',
+      duration: 0.9,
+      ease: 'back.out(1.6)',
     })
   }
 
@@ -204,10 +223,10 @@ onMounted(() => {
       [decorLine1.value, decorLine2.value],
       {
         scaleX: 1,
-        duration: 0.8,
+        duration: 0.55,
         stagger: 0.1,
       },
-      '-=0.5'
+      '<0.25'
     )
   }
 
@@ -221,11 +240,11 @@ onMounted(() => {
       {
         scale: 1,
         opacity: 1,
-        duration: 0.5,
-        stagger: 0.1,
+        duration: 0.35,
+        stagger: 0.08,
         ease: 'back.out(2)',
       },
-      '-=0.4'
+      '<0.15'
     )
   }
 
@@ -239,10 +258,10 @@ onMounted(() => {
           opacity: 1,
           y: 0,
           rotationX: 0,
-          duration: 0.8,
+          duration: 0.55,
           ease: 'back.out(1.5)',
         },
-        `-=${index === 0 ? 0.3 : 0.5}`
+        index === 0 ? '<0.2' : '<0.12'
       )
     }
   })
@@ -255,9 +274,9 @@ onMounted(() => {
       {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: 0.55,
       },
-      '-=0.3'
+      '<0.15'
     )
   }
 
@@ -271,11 +290,11 @@ onMounted(() => {
         opacity: 1,
         scale: 1,
         y: 0,
-        duration: 0.6,
-        stagger: 0.15,
+        duration: 0.45,
+        stagger: 0.12,
         ease: 'back.out(1.5)',
       },
-      '-=0.4'
+      '<0.15'
     )
   }
 
@@ -287,9 +306,9 @@ onMounted(() => {
       {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: 0.55,
       },
-      '-=0.3'
+      '<0.2'
     )
   }
 
@@ -306,6 +325,10 @@ onMounted(() => {
       delay: 2,
     })
   }
+
+  tl.eventCallback('onComplete', () => {
+    preloadAnim.value = false
+  })
 })
 </script>
 
@@ -332,6 +355,39 @@ onMounted(() => {
   @media (max-width: 768px)
     padding-top: 70px
 
+.hero-content.preload-anim
+  // Hide animated elements before GSAP runs to avoid initial paint flash.
+  [data-anim='logo']
+    opacity: 0
+    transform: translate3d(0, -50px, 0) scale(0.5)
+    will-change: transform, opacity
+
+  [data-anim='decor-line']
+    transform: scaleX(0)
+    transform-origin: center
+    will-change: transform
+
+  [data-anim='decor-dot']
+    opacity: 0
+    transform: scale(0)
+    will-change: transform, opacity
+
+  [data-anim='title-word']
+    opacity: 0
+    transform: translate3d(0, 50px, 0) rotateX(-90deg)
+    transform-style: preserve-3d
+    will-change: transform, opacity
+
+  [data-anim='subtitle']
+    opacity: 0
+    transform: translate3d(0, 30px, 0)
+    will-change: transform, opacity
+
+  [data-anim='buttons'] .btn
+    opacity: 0
+    transform: translate3d(0, 30px, 0) scale(0.8)
+    will-change: transform, opacity
+
 .title-word
   display: inline-block
   // 降低文字阴影强度
@@ -343,36 +399,11 @@ onMounted(() => {
     font-weight: 900
     font-size: 1.25em
 
-.subtitle-wrapper
-  animation: fadeInUp 1s ease-out
-
-.scroll-indicator
-  animation: fadeIn 2s ease-out
-  z-index: 10
-
-  &:hover
-    cursor: pointer
-    transform: translateX(-50%) translateY(-5px)
-
 @keyframes shimmer
   0%
     background-position: -200% 0
   100%
     background-position: 200% 0
-
-@keyframes fadeInUp
-  from
-    opacity: 0
-    transform: translateY(20px)
-  to
-    opacity: 1
-    transform: translateY(0)
-
-@keyframes fadeIn
-  from
-    opacity: 0
-  to
-    opacity: 1
 
 // 响应式调整
 @media (max-width: 768px)
