@@ -60,7 +60,7 @@ const cardSections: {
     id: 'kanban-girl',
     title: '沃利杰诺·梅因',
     subtitle: '看板娘',
-    imageSrc: 'https://r2.epb.wiki/artworks/Original.Main/20231108.jpeg',
+    imageSrc: 'https://r2.epb.wiki/artworks/Original.Main/omain_te_202602_r01_bg.jpg',
     moreHref:
       'https://zh.moegirl.org.cn/%E6%B2%83%E5%88%A9%E6%9D%B0%E8%AF%BA%C2%B7%E6%A2%85%E5%9B%A0',
     moreText: '可爱捏',
