@@ -89,7 +89,7 @@ const cardSections: {
     title: '苏凛莉',
     subtitle: '「小天使」',
     imageSrc: 'https://r2.epb.wiki/artworks/SILI/sili_202602_r01_bg.png',
-    moreHref: 'https://epb-wiki.notion.site/sara_lindery',
+    moreHref: 'https://epb-wiki.notion.site/sara-lindery',
     moreText: '角色详情',
     description: [
       '苏凛莉 Sara Lindery',
