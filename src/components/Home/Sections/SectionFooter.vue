@@ -1,62 +1,50 @@
 <template lang="pug">
 .home-section-wrapper.w-full.relative.flex.flex-col.justify-start.mb-24
-  .footer-wrapper.w-full.max-w-5xl.mx-auto.px-4.py-16.flex-1.flex.flex-col.justify-center
-    .text-center.mb-12
-      h2.text-4xl.font-extrabold.mb-4.bg-gradient-to-r.from-primary.to-accent.bg-clip-text.text-transparent(
+  .footer-wrapper.w-full.max-w-5xl.mx-auto.px-4.py-10.flex-1.flex.flex-col.justify-center
+    .text-center.space-y-6
+      h2.text-4xl.font-extrabold.mb-2.bg-gradient-to-r.from-primary.to-accent.bg-clip-text.text-transparent(
         class='md:text-5xl'
       ) 尾声
-      p.text-xl.text-base-content.opacity-70.mb-6 天下没有不散的筵席
+      p.text-xl.text-base-content.opacity-70 天下没有不散的筵席
       p.text-lg.italic.text-base-content.opacity-60(
         style='font-family: "Times New Roman", Times, serif'
       ) Good morning, and in case I don't see you, Good afternoon, Good evening, And good night.
 
-    .cards-area.grid.gap-4.mb-16.grid-cols-1(
-      class='md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4'
-    )
-      .card.bg-base-200.border-2.border-base-300.shadow-lg.transform.transition-all(
-        class='hover:shadow-xl hover:border-secondary hover:scale-105'
-      )
-        .card-body
-          h3.card-title.text-xl.font-bold.text-base-content 这叫占位符
-          p.text-base-content.opacity-80.text-sm 我也不知道这里要放什么比较好，总之空着很难看。
-          .card-actions.justify-end.mt-4
-            button.btn.btn-ghost.btn-sm.cursor-default 看一看
-
-      .card.bg-base-200.border-2.border-base-300.shadow-lg.transform.transition-all(
-        class='hover:shadow-xl hover:border-secondary hover:scale-105'
-      )
-        .card-body
-          h3.card-title.text-xl.font-bold.text-base-content 广告位招租
-          p.text-base-content.opacity-80.text-sm 特价：仅需 $114,514 即可承包 1,919,810 纳秒。
-          .card-actions.justify-end.mt-4
-            button.btn.btn-ghost.btn-sm.cursor-default 瞧一瞧
-
-      .card.bg-base-200.border-2.border-base-300.shadow-lg.transform.transition-all(
-        class='hover:shadow-xl hover:border-accent hover:scale-105'
-      )
-        .card-body
-          h3.card-title.text-xl.font-bold.text-base-content 你瞅啥
-          p.text-base-content.opacity-80.text-sm 已经没有更多东西了！
-          .card-actions.justify-end.mt-4
-            button.btn.btn-ghost.btn-sm.cursor-default 再见
-
-      .card.bg-base-200.border-2.border-base-300.shadow-lg.transform.transition-all(
-        class='hover:shadow-xl hover:border-info hover:scale-105'
-      )
-        .card-body
-          h3.card-title.text-xl.font-bold.text-base-content 真的没了
-          p.text-base-content.opacity-80.text-sm 凑个数。看到这条的人记得多喝热水。
-          .card-actions.justify-end.mt-4
-            button.btn.btn-ghost.btn-sm.cursor-default 再也不见
+      //- Social links
+      .flex.flex-row.flex-wrap.justify-center.gap-3.pt-4
+        a.btn.btn-circle.btn-ghost.text-primary.transition-all(
+          class='hover:bg-primary hover:text-primary-content',
+          href='https://twitter.com/XiaoYuJunDesu',
+          target='_blank',
+          aria-label='Twitter'
+        ): Icon: Twitter
+        a.btn.btn-circle.btn-ghost.text-secondary.transition-all(
+          class='hover:bg-secondary hover:text-secondary-content',
+          href='https://github.com/dragon-fish',
+          target='_blank',
+          aria-label='GitHub'
+        ): Icon: Github
+        a.btn.btn-circle.btn-ghost.text-accent.transition-all(
+          class='hover:bg-accent hover:text-accent-content',
+          href='https://steamcommunity.com/id/dragon-fish',
+          target='_blank',
+          aria-label='Steam'
+        ): Icon: Steam
+        a.btn.btn-circle.btn-ghost.text-info.transition-all(
+          class='hover:bg-info hover:text-info-content',
+          href='mailto:dragon-fish@qq.com',
+          target='_blank',
+          aria-label='Email'
+        ): Icon: Envelope
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Icon } from '@vicons/utils'
+import { Twitter, Github, Steam, Envelope } from '@vicons/fa'
+</script>
 
 <style scoped lang="sass">
 .footer-wrapper
   padding-top: 2rem
   padding-bottom: 2rem
-
-:deep(footer)
-  margin-top: 3rem
 </style>

@@ -1,69 +1,97 @@
 <template lang="pug">
-header#global-header.fixed.top-0.navbar.bg-base-100.backdrop-blur-lg.shadow-lg.bg-opacity-90.z-50.border-b-2.transition-all.duration-300.border-base-300(
-  ref='headerRef'
+header#global-header.fixed.z-50.transition-all.duration-300(
+  ref='headerRef',
+  :class='{ scrolled: isScrolled }'
 )
-  //- 顶部装饰线
-  .absolute.top-0.left-0.right-0.h-1.bg-gradient-to-r.from-primary.via-secondary.to-accent.opacity-70
-
-  .navbar-start
-    .flex.gap-2.items-center
-      a.btn.btn-ghost.btn-circle.avatar.relative.group.transition-all.duration-300(
-        class='hover:scale-110'
-      )
-        .absolute.inset-0.rounded-full.bg-gradient-to-r.from-primary.to-secondary.opacity-0.group-hover_opacity-20.blur-md.transition-opacity
-        img.relative.z-10(src='/wiki-wordmark.svg', alt='Logo')
-
-      a.btn.btn-ghost.normal-case.text-xl.font-bold.relative.group.transition-all.duration-300(
-        href='/',
-        class='hover:text-transparent'
-      )
-        span.relative.z-10.group-hover_bg-gradient-to-r.group-hover_from-primary.group-hover_to-secondary.group-hover_bg-clip-text Project EPB
-        .absolute.bottom-0.left-0.w-0.bg-gradient-to-r.from-primary.to-secondary.group-hover_w-full.transition-all.duration-300(
-          h='0.5'
-        )
-
-  .navbar-end
-    a.cursor-pointer.select-none.theme-toggler.flex.justify-center.items-center.gap-2.px-4.py-2.rounded-full.relative.group.overflow-hidden.transition-all.duration-300(
-      class='hover:bg-base-200',
-      title='单击切换主题，双击跟随系统',
-      @click='theme = isChecked ? "dark" : "light"',
-      @dblclick='theme = "auto"'
+  nav.header-inner.flex.items-center.justify-between.px-5.py-2.rounded-2xl.transition-all.duration-300(
+    class='backdrop-blur-xl'
+  )
+    //- Left: Logo + site name
+    a.flex.items-center.gap-2.transition-all.duration-300(
+      href='/',
+      class='hover:opacity-80'
     )
-      //- 悬浮背景效果
-      .absolute.inset-0.bg-gradient-to-r.from-purple-400.to-pink-400.opacity-0.group-hover_opacity-10.transition-opacity.duration-300
+      img.w-8.h-8(src='/wiki-wordmark.svg', alt='Logo')
+      span.font-bold.text-lg.text-base-content Project EPB
 
-      span.text-2xl.relative.z-10.transform.transition-all.duration-300(
-        class='hover:scale-125 hover:rotate-12',
-        @click.stop='theme = "dark"'
-      ) 🌙
-
-      input.toggle.toggle-primary.toggle-sm.pointer-events-none.relative.z-10(
-        type='checkbox',
-        :checked='isChecked',
-        :indeterminate='isIndeterminate'
+    //- Right: theme dropdown
+    .relative(ref='dropdownRef')
+      button.theme-btn.flex.items-center.justify-center.w-9.h-9.rounded-full.transition-all.duration-300.cursor-pointer(
+        class='hover:bg-base-content/10',
+        @click='dropdownOpen = !dropdownOpen',
+        :title='themeLabel'
       )
+        span.text-lg.transition-transform.duration-300 {{ themeIcon }}
 
-      span.text-2xl.relative.z-10.transform.transition-all.duration-300(
-        class='hover:scale-125 hover:-rotate-12',
-        @click.stop='theme = "light"'
-      ) 🌞
+      //- Dropdown menu
+      Transition(name='dropdown')
+        .theme-dropdown.absolute.right-0.mt-2.py-1.rounded-xl.min-w-36(
+          v-if='dropdownOpen'
+        )
+          button.dropdown-item.flex.items-center.gap-3.w-full.px-4.py-2.text-sm.transition-colors.duration-200.cursor-pointer(
+            class='hover:bg-base-content/8',
+            :class='{ active: theme === "light" }',
+            @click='selectTheme("light")'
+          )
+            span 🌞
+            span 拥抱光明
+            span.ml-auto.text-xs.opacity-50(v-if='theme === "light"') ✓
+
+          button.dropdown-item.flex.items-center.gap-3.w-full.px-4.py-2.text-sm.transition-colors.duration-200.cursor-pointer(
+            class='hover:bg-base-content/8',
+            :class='{ active: theme === "dark" }',
+            @click='selectTheme("dark")'
+          )
+            span 🌚
+            span 堕入黑暗
+            span.ml-auto.text-xs.opacity-50(v-if='theme === "dark"') ✓
+
+          button.dropdown-item.flex.items-center.gap-3.w-full.px-4.py-2.text-sm.transition-colors.duration-200.cursor-pointer(
+            class='hover:bg-base-content/8',
+            :class='{ active: theme === "auto" }',
+            @click='selectTheme("auto")'
+          )
+            span 🌈
+            span 随波逐流
+            span.ml-auto.text-xs.opacity-50(v-if='theme === "auto"') ✓
 </template>
 
 <script setup lang="ts">
 import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
 
 const theme = ref<'auto' | 'light' | 'dark'>('auto')
-const isChecked = ref(true)
 const isScrolled = ref(false)
 const headerRef = ref<HTMLElement | null>(null)
+const dropdownRef = ref<HTMLElement | null>(null)
+const dropdownOpen = ref(false)
 
-const isIndeterminate = computed(() => theme.value === 'auto')
+const themeIcon = computed(() => {
+  if (theme.value === 'light') return '🌞'
+  if (theme.value === 'dark') return '🌚'
+  return '🌈'
+})
+
+const themeLabel = computed(() => {
+  if (theme.value === 'light') return '浅色模式'
+  if (theme.value === 'dark') return '深色模式'
+  return '跟随系统'
+})
+
+function selectTheme(t: 'auto' | 'light' | 'dark') {
+  theme.value = t
+  dropdownOpen.value = false
+}
+
+function handleClickOutside(e: MouseEvent) {
+  if (dropdownRef.value && !dropdownRef.value.contains(e.target as Node)) {
+    dropdownOpen.value = false
+  }
+}
 
 watch(theme, () => {
   if (typeof window === 'undefined') return
   document.documentElement.dataset.theme = theme.value
   localStorage.setItem('theme', theme.value)
-  isChecked.value = theme.value === 'light'
 })
 
 function handleScroll() {
@@ -72,37 +100,59 @@ function handleScroll() {
 
 onMounted(() => {
   theme.value = (localStorage.getItem('theme') as any) || 'auto'
-  isChecked.value = localStorage.getItem('theme') === 'light'
 
   window.addEventListener('scroll', handleScroll)
+  document.addEventListener('click', handleClickOutside)
   handleScroll()
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  document.removeEventListener('click', handleClickOutside)
 })
 </script>
 
 <style scoped lang="sass">
 #global-header
-  will-change: box-shadow, border-color
+  top: 0.75rem
+  left: 50%
+  transform: translateX(-50%)
+  width: calc(100% - 2rem)
+  max-width: 64rem
 
-  &::before
-    content: ''
-    position: absolute
-    inset: 0
-    background: inherit
-    z-index: -1
+.header-inner
+  background: color-mix(in oklch, var(--color-base-100) 60%, transparent)
+  border: 1px solid color-mix(in oklch, var(--color-base-content) 8%, transparent)
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1)
 
-.avatar img
-  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+#global-header.scrolled .header-inner
+  background: color-mix(in oklch, var(--color-base-100) 85%, transparent)
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15)
 
-.avatar:hover img
-  transform: rotate(360deg) scale(1.1)
+.theme-dropdown
+  background: color-mix(in oklch, var(--color-base-100) 90%, transparent)
+  backdrop-filter: blur(20px)
+  border: 1px solid color-mix(in oklch, var(--color-base-content) 10%, transparent)
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2)
+  z-index: 100
 
-.theme-toggler
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05)
+.dropdown-item
+  color: var(--color-base-content)
+  border: none
+  background: none
+  text-align: left
 
-  &:hover
-    box-shadow: 0 4px 12px rgba(138, 110, 255, 0.2)
+  &.active
+    color: var(--color-primary)
+    font-weight: 600
+
+// Transition
+.dropdown-enter-active,
+.dropdown-leave-active
+  transition: all 0.2s ease
+
+.dropdown-enter-from,
+.dropdown-leave-to
+  opacity: 0
+  transform: translateY(-8px) scale(0.95)
 </style>

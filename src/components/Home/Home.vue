@@ -1,6 +1,6 @@
 <template lang="pug">
 #view-home.relative.min-h-screen.bg-base-100.overflow-x-hidden
-  GlobalHeader.fixed.top-0.left-0.w-full.z-50.backdrop-blur-md.bg-base-100.bg-opacity-80.shadow-sm
+  GlobalHeader
 
   main.relative.z-10
     //- 渲染所有 Section
@@ -247,7 +247,7 @@ onUnmounted(() => {
 <style scoped lang="sass">
 #view-home
   position: relative
-  background: linear-gradient(180deg, oklch(var(--color-base-100)) 0%, oklch(var(--color-base-200)) 50%, oklch(var(--color-base-100)) 100%)
+  background: linear-gradient(180deg, var(--color-base-100) 0%, var(--color-base-200) 50%, var(--color-base-100) 100%)
 
 .home-section
   scroll-margin-top: 0 // Hero 区域不需要 margin
