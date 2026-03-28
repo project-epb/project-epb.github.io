@@ -160,11 +160,6 @@ import { gsap } from 'gsap'
 import BaseSection from './BaseSection.vue'
 import heroImage from '@/assets/epb-hero.png'
 
-const prefersReducedMotion =
-  typeof window !== 'undefined' &&
-  typeof window.matchMedia === 'function' &&
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
 // 彩色标题文字
 const titleWords = [
   { text: 'Everything', color: 'var(--color-primary)' },
@@ -172,8 +167,8 @@ const titleWords = [
   { text: 'Bureau', color: 'var(--color-accent)' },
 ]
 
-// Prevent initial paint "flash" before GSAP runs.
-const preloadAnim = ref(!prefersReducedMotion)
+// SSR-safe: default false, set in onMounted
+const preloadAnim = ref(false)
 
 const titleWordRefs = ref<(HTMLElement | null)[]>([])
 // Logo removed from layout
@@ -202,10 +197,15 @@ function scrollToNext() {
 }
 
 onMounted(() => {
+  const prefersReducedMotion =
+    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
+
   if (prefersReducedMotion) {
-    preloadAnim.value = false
     return
   }
+
+  // Enable preload animation hiding (will be cleared when timeline completes)
+  preloadAnim.value = true
 
   // 创建主时间轴
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })

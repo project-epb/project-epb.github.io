@@ -22,7 +22,7 @@ const { content } = Astro.props
         <slot />
       </article>
     </main>
-    <GlobalHeader client:only />
-    <GlobalFooter client:only />
+    <GlobalHeader client:load />
+    <GlobalFooter client:load />
   </div>
 </Base>

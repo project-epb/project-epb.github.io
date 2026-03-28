@@ -23,15 +23,12 @@ importers:
       '@astrojs/vue':
         specifier: ^5.1.4
         version: 5.1.4(astro@5.16.15(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.56.0)(sass@1.97.3)(typescript@5.9.3)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.56.0)(sass@1.97.3)(vue@3.5.27(typescript@5.9.3))(yaml@2.8.2)
+      '@tabler/icons-vue':
+        specifier: ^3.41.0
+        version: 3.41.0(vue@3.5.27(typescript@5.9.3))
       '@tailwindcss/typography':
         specifier: ^0.5.19
         version: 0.5.19(tailwindcss@4.1.18)
-      '@vicons/fa':
-        specifier: ^0.13.0
-        version: 0.13.0
-      '@vicons/utils':
-        specifier: ^0.1.4
-        version: 0.1.4(vue@3.5.27(typescript@5.9.3))
       astro:
         specifier: ^5.16.15
         version: 5.16.15(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.56.0)(sass@1.97.3)(typescript@5.9.3)(yaml@2.8.2)
@@ -284,9 +281,6 @@ packages:
 
   '@emnapi/runtime@1.8.1':
     resolution: {integrity: sha512-mehfKSMWjjNol8659Z8KxEMrdSJDDot5SXMq00dM8BN4o+CLNXQ0xH2V7EchNHV4RmbZLmmPdEaXZc5H2FXmDg==}
-
-  '@emotion/hash@0.8.0':
-    resolution: {integrity: sha512-kBJtf7PH6aWwZ6fka3zQ0p6SBYzx4fl1LoZXE2RrnYST9Xljm7WfKJrU4g/Xr3Beg72MLrp1AWNUmuYJTL7Cow==}
 
   '@esbuild/aix-ppc64@0.25.12':
     resolution: {integrity: sha512-Hhmwd6CInZ3dwpuGTF8fJG6yoWmsToE+vYgD4nytZVxcu1ulHpUQRAB1UJ8+N1Am3Mz4+xOByoQoSZf4D+CpkA==}
@@ -894,6 +888,14 @@ packages:
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
 
+  '@tabler/icons-vue@3.41.0':
+    resolution: {integrity: sha512-DrfreCW00AlfX1qgfEmJKbIqmQLOWakiGnriqej4AXeVPM10E/7VOwH+PYz61/5WQiRwqWIlNlhWNJh4OdJjgg==}
+    peerDependencies:
+      vue: '>=3.0.1'
+
+  '@tabler/icons@3.41.0':
+    resolution: {integrity: sha512-arlig0nkaC9UGqTZuT1MMZepX29t3Ysx5HSy2UvmR+CZrhlNxZrCM6Z4qYBoaIO+2ICZykttjBCSpf+p/t0H3w==}
+
   '@tailwindcss/node@4.1.18':
     resolution: {integrity: sha512-DoR7U1P7iYhw16qJ49fgXUlry1t4CpXeErJHnQ44JgTSKMaZUdf17cfn5mHchfJ4KRBZRFA/Coo+MUF5+gOaCQ==}
 
@@ -1013,9 +1015,6 @@ packages:
   '@types/nlcst@2.0.3':
     resolution: {integrity: sha512-vSYNSDe6Ix3q+6Z7ri9lyWqgGhJTmzRjZRqyq15N0Z/1/UnVsno9G/N40NBijoYx2seFDIl0+B2mgAb9mezUCA==}
 
-  '@types/node@14.14.45':
-    resolution: {integrity: sha512-DssMqTV9UnnoxDWu959sDLZzfvqCF0qDNRjaWeYSui9xkFe61kKo4l1TWNTQONpuXEm+gLMRvdlzvNHBamzmEw==}
-
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
 
@@ -1030,14 +1029,6 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
-
-  '@vicons/fa@0.13.0':
-    resolution: {integrity: sha512-BFcDewcT78fSn4Y/fOgqlswbLUEW3+qJK2iJiNtgmkMzadBVpDXhNyVKsYM3V2uKPvDUrZT0JCWDWVRCiBXJZA==}
-
-  '@vicons/utils@0.1.4':
-    resolution: {integrity: sha512-OHI19qVNN6i+uPQ+Y3f2s0dUxwsYnOCcKBW7XOU4yXXO1aU3ZoKpblCc3+4N0qmgoJs5rWKRAaMisipqEXJwAg==}
-    peerDependencies:
-      vue: ^3.0.6
 
   '@vitejs/plugin-vue-jsx@4.2.0':
     resolution: {integrity: sha512-DSTrmrdLp+0LDNF77fqrKfx7X0ErRbOcUAgJL/HbSesqQwoUvUQ4uYQqaex+rovqgGcoPqVk+AwUh3v9CuiYIw==}
@@ -1114,9 +1105,6 @@ packages:
 
   '@vue/shared@3.5.27':
     resolution: {integrity: sha512-dXr/3CgqXsJkZ0n9F3I4elY8wM9jMJpP3pvRG52r6m0tu/MsAFIe6JpXVGeNMd/D9F4hQynWT8Rfuj0bdm9kFQ==}
-
-  '@xicons/utils@0.1.4':
-    resolution: {integrity: sha512-uXxKDLz9abr80yJC05XSTq6wlyFcdW+N/1IYJkeHjzzXVc4VQ0sEYMoMMTjAH7HQBOyOkzOB4pf5NGF72lwa8Q==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1323,9 +1311,6 @@ packages:
   crossws@0.3.5:
     resolution: {integrity: sha512-ojKiDvcmByhwa8YYqbQI/hg7MEU0NC03+pSdEq4ZUnZR9xXpwk7E43SMNGkn+JxJGPFtNvQ48+vV2p+P1ml5PA==}
 
-  css-render@0.13.9:
-    resolution: {integrity: sha512-n3C4ZH59rveBrUlAD7n0Ze9/gUMKa4dlH1C9CWKpGcIHR/xRcIVXzBGy1iw8WWq2ySmn2/ZqOpySQNAK5Pb6sw==}
-
   css-select@5.2.2:
     resolution: {integrity: sha512-TizTzUddG/xYLA3NXodFM0fSbNizXjOKhqiQQwvhlspadZokn1KDy0NZFS0wuEubIYAV5/c1/lAr0TaaFXEXzw==}
 
@@ -1349,9 +1334,6 @@ packages:
   csso@5.0.5:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
-
-  csstype@3.0.11:
-    resolution: {integrity: sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==}
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
@@ -3200,8 +3182,6 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@emotion/hash@0.8.0': {}
-
   '@esbuild/aix-ppc64@0.25.12':
     optional: true
 
@@ -3666,6 +3646,13 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
+  '@tabler/icons-vue@3.41.0(vue@3.5.27(typescript@5.9.3))':
+    dependencies:
+      '@tabler/icons': 3.41.0
+      vue: 3.5.27(typescript@5.9.3)
+
+  '@tabler/icons@3.41.0': {}
+
   '@tailwindcss/node@4.1.18':
     dependencies:
       '@jridgewell/remapping': 2.3.5
@@ -3765,8 +3752,6 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/node@14.14.45': {}
-
   '@types/node@17.0.45': {}
 
   '@types/sax@1.2.7':
@@ -3778,13 +3763,6 @@ snapshots:
   '@types/unist@3.0.3': {}
 
   '@ungap/structured-clone@1.3.0': {}
-
-  '@vicons/fa@0.13.0': {}
-
-  '@vicons/utils@0.1.4(vue@3.5.27(typescript@5.9.3))':
-    dependencies:
-      '@xicons/utils': 0.1.4
-      vue: 3.5.27(typescript@5.9.3)
 
   '@vitejs/plugin-vue-jsx@4.2.0(vite@6.4.1(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.97.3)(yaml@2.8.2))(vue@3.5.27(typescript@5.9.3))':
     dependencies:
@@ -3920,10 +3898,6 @@ snapshots:
       vue: 3.5.27(typescript@5.9.3)
 
   '@vue/shared@3.5.27': {}
-
-  '@xicons/utils@0.1.4':
-    dependencies:
-      css-render: 0.13.9
 
   acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:
@@ -4193,12 +4167,6 @@ snapshots:
     dependencies:
       uncrypto: 0.1.3
 
-  css-render@0.13.9:
-    dependencies:
-      '@emotion/hash': 0.8.0
-      '@types/node': 14.14.45
-      csstype: 3.0.11
-
   css-select@5.2.2:
     dependencies:
       boolbase: 1.0.0
@@ -4224,8 +4192,6 @@ snapshots:
   csso@5.0.5:
     dependencies:
       css-tree: 2.2.1
-
-  csstype@3.0.11: {}
 
   csstype@3.2.3: {}
 

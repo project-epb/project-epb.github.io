@@ -216,11 +216,7 @@ html {
 
 .btn-ghost {
   background-color: transparent;
-  color: inherit;
   border: none;
-}
-.btn-ghost:hover {
-  background-color: color-mix(in oklch, currentColor 10%, transparent);
 }
 
 .btn-lg {

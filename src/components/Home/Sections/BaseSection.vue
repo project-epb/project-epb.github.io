@@ -8,13 +8,13 @@
     v-if='showJumpAnchor',
     @click='scrollNext'
   )
-    Icon: ChevronDown
+    IconWrapper: IconChevronDown
 </template>
 
 <script setup lang="ts">
 import type { StyleValue } from 'vue'
-import { Icon } from '@vicons/utils'
-import { ChevronDown } from '@vicons/fa'
+import { IconChevronDown } from '@tabler/icons-vue'
+import IconWrapper from '@com/BaseTemplate/IconWrapper.vue'
 
 withDefaults(
   defineProps<{

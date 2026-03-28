@@ -18,8 +18,7 @@
         rel='noopener noreferrer'
       ) 
         | {{ moreText }}
-        Icon
-          ArrowRight
+        IconWrapper: IconArrowRight
 
   .thumb.flex-1(v-if='imageSrc || iframeSrc')
     .card.bg-base-100.shadow-2xl.border.border-base-300.overflow-hidden.transform.transition-all(
@@ -48,8 +47,8 @@
 
 <script setup lang="ts">
 import {} from 'vue'
-import { Icon } from '@vicons/utils'
-import { ArrowRight } from '@vicons/fa'
+import { IconArrowRight } from '@tabler/icons-vue'
+import IconWrapper from '@com/BaseTemplate/IconWrapper.vue'
 withDefaults(
   defineProps<{
     title: string

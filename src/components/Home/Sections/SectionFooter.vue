@@ -12,39 +12,43 @@
 
       //- Social links
       .flex.flex-row.flex-wrap.justify-center.gap-3.pt-4
-        a.btn.btn-circle.btn-ghost.text-primary.transition-all(
-          class='hover:bg-primary hover:text-primary-content',
+        a.social-btn.btn.btn-circle.btn-ghost.text-primary.transition-all(
           href='https://twitter.com/XiaoYuJunDesu',
           target='_blank',
-          aria-label='Twitter'
-        ): Icon: Twitter
-        a.btn.btn-circle.btn-ghost.text-secondary.transition-all(
-          class='hover:bg-secondary hover:text-secondary-content',
+          aria-label='Twitter',
+          style='--btn-color: var(--color-primary); --btn-text: var(--color-primary-content)'
+        ): IconWrapper: IconBrandX
+        a.social-btn.btn.btn-circle.btn-ghost.text-secondary.transition-all(
           href='https://github.com/dragon-fish',
           target='_blank',
-          aria-label='GitHub'
-        ): Icon: Github
-        a.btn.btn-circle.btn-ghost.text-accent.transition-all(
-          class='hover:bg-accent hover:text-accent-content',
+          aria-label='GitHub',
+          style='--btn-color: var(--color-secondary); --btn-text: var(--color-secondary-content)'
+        ): IconWrapper: IconBrandGithub
+        a.social-btn.btn.btn-circle.btn-ghost.text-accent.transition-all(
           href='https://steamcommunity.com/id/dragon-fish',
           target='_blank',
-          aria-label='Steam'
-        ): Icon: Steam
-        a.btn.btn-circle.btn-ghost.text-info.transition-all(
-          class='hover:bg-info hover:text-info-content',
+          aria-label='Steam',
+          style='--btn-color: var(--color-accent); --btn-text: var(--color-accent-content)'
+        ): IconWrapper: IconBrandSteam
+        a.social-btn.btn.btn-circle.btn-ghost.text-info.transition-all(
           href='mailto:dragon-fish@qq.com',
           target='_blank',
-          aria-label='Email'
-        ): Icon: Envelope
+          aria-label='Email',
+          style='--btn-color: var(--color-info); --btn-text: var(--color-info-content)'
+        ): IconWrapper: IconMail
 </template>
 
 <script setup lang="ts">
-import { Icon } from '@vicons/utils'
-import { Twitter, Github, Steam, Envelope } from '@vicons/fa'
+import { IconBrandX, IconBrandGithub, IconBrandSteam, IconMail } from '@tabler/icons-vue'
+import IconWrapper from '@com/BaseTemplate/IconWrapper.vue'
 </script>
 
 <style scoped lang="sass">
 .footer-wrapper
   padding-top: 2rem
   padding-bottom: 2rem
+
+.social-btn:hover
+  background-color: var(--btn-color)
+  color: var(--btn-text)
 </style>
