@@ -245,68 +245,67 @@ function handleMouseLeave() {
 }
 
 onMounted(() => {
-  // ScrollTrigger 动画
+  // ScrollTrigger animations — unified timing per card unit
   if (sectionRef.value) {
-    // 图片入场动画
+    const ease = 'power2.out'
+    const sharedTrigger = {
+      trigger: sectionRef.value,
+      start: 'top 80%',
+      toggleActions: 'play none none reverse',
+    }
+
+    // Image and content slide in from opposite sides on desktop, fade up on mobile
+    const isDesktop = window.matchMedia('(min-width: 769px)').matches
+
     if (imageContainerRef.value) {
       gsap.from(imageContainerRef.value, {
-        scrollTrigger: {
-          trigger: sectionRef.value,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reverse',
-        },
-        x: props.isReverse ? 100 : -100,
+        scrollTrigger: sharedTrigger,
+        x: isDesktop ? (props.isReverse ? 50 : -50) : 0,
+        y: isDesktop ? 0 : 30,
         opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
+        duration: 0.7,
+        ease,
       })
     }
 
-    // 内容入场动画
     if (contentRef.value) {
       gsap.from(contentRef.value, {
-        scrollTrigger: {
-          trigger: sectionRef.value,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reverse',
-        },
-        x: props.isReverse ? -100 : 100,
+        scrollTrigger: sharedTrigger,
+        x: isDesktop ? (props.isReverse ? -50 : 50) : 0,
+        y: isDesktop ? 0 : 30,
         opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
+        duration: 0.7,
+        delay: 0.08,
+        ease,
       })
     }
 
-    // 标题下划线动画
+    // Title underline — starts slightly after content appears
     if (titleUnderlineRef.value) {
       gsap.to(titleUnderlineRef.value, {
-        scrollTrigger: {
-          trigger: sectionRef.value,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
+        scrollTrigger: sharedTrigger,
         width: '100%',
-        duration: 0.8,
-        ease: 'power2.out',
+        duration: 0.6,
+        delay: 0.15,
+        ease,
       })
     }
 
-    // 描述文字逐行入场
+    // Description lines — staggered entrance, converging finish
+    const descEnd = 0.8
+    const descStagger = 0.08
     descriptionRefs.value.forEach((ref, index) => {
       if (ref) {
+        const delay = 0.2 + index * descStagger
+        const dur = Math.max(descEnd - delay, 0.25)
         gsap.from(ref, {
-          scrollTrigger: {
-            trigger: sectionRef.value,
-            start: 'top 70%',
-            toggleActions: 'play none none reverse',
-          },
-          x: -30,
+          scrollTrigger: sharedTrigger,
+          x: isDesktop ? (props.isReverse ? -20 : 20) : 0,
+          y: isDesktop ? 0 : 12,
           opacity: 0,
-          duration: 0.6,
-          delay: 0.2 + index * 0.1,
-          ease: 'power2.out',
+          duration: dur,
+          delay,
+          ease,
         })
       }
     })

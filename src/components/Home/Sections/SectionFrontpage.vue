@@ -207,130 +207,78 @@ onMounted(() => {
   // Enable preload animation hiding (will be cleared when timeline completes)
   preloadAnim.value = true
 
-  // 创建主时间轴
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+  // Converging animation: elements start in sequence but all finish around the same time.
+  // Earlier elements get longer duration, later elements get shorter — they "catch up".
+  const ease = 'power2.out'
+  const tl = gsap.timeline({ defaults: { ease } })
 
-  // 装饰线和点的动画
-  if (decorLine1.value && decorLine2.value) {
-    gsap.set([decorLine1.value, decorLine2.value], { scaleX: 0 })
-    tl.to(
-      [decorLine1.value, decorLine2.value],
-      {
-        scaleX: 1,
-        duration: 0.55,
-        stagger: 0.1,
-      },
-      '<0.25'
-    )
+  // Timeline target: all elements finish by ~T=0.7s
+  const endTime = 0.7
+  const stagger = 0.06 // fixed gap between each element's start
+  let i = 0
+
+  // Helper: schedule element at position i, duration shrinks so it ends at endTime
+  const at = () => {
+    const start = i * stagger
+    const dur = Math.max(endTime - start, 0.25) // minimum duration 0.25s
+    i++
+    return { start, dur }
   }
 
-  if (decorDot1.value && decorDot2.value && decorDot3.value) {
-    gsap.set([decorDot1.value, decorDot2.value, decorDot3.value], {
-      scale: 0,
-      opacity: 0,
-    })
-    tl.to(
-      [decorDot1.value, decorDot2.value, decorDot3.value],
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.35,
-        stagger: 0.08,
-        ease: 'back.out(2)',
-      },
-      '<0.15'
-    )
-  }
-
-  // 标题文字逐个弹出
-  titleWordRefs.value.forEach((wordRef, index) => {
+  // Title words
+  titleWordRefs.value.forEach((wordRef) => {
     if (wordRef) {
-      gsap.set(wordRef, { opacity: 0, y: 50, rotationX: -90 })
-      tl.to(
-        wordRef,
-        {
-          opacity: 1,
-          y: 0,
-          rotationX: 0,
-          duration: 0.55,
-          ease: 'back.out(1.5)',
-        },
-        index === 0 ? '<0.2' : '<0.12'
-      )
+      const { start, dur } = at()
+      gsap.set(wordRef, { opacity: 0, y: 24 })
+      tl.to(wordRef, { opacity: 1, y: 0, duration: dur }, start)
     }
   })
 
-  // 副标题淡入
-  if (subtitleRef.value) {
-    gsap.set(subtitleRef.value, { opacity: 0, y: 30 })
-    tl.to(
-      subtitleRef.value,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.55,
-      },
-      '<0.15'
-    )
+  // Decorative lines
+  const decorEls = [decorLine1.value, decorLine2.value].filter(Boolean)
+  const dotEls = [decorDot1.value, decorDot2.value, decorDot3.value].filter(Boolean)
+
+  if (decorEls.length) {
+    const { start, dur } = at()
+    gsap.set(decorEls, { scaleX: 0 })
+    tl.to(decorEls, { scaleX: 1, duration: dur, stagger: 0.03 }, start)
+  }
+  if (dotEls.length) {
+    const { start, dur } = at()
+    gsap.set(dotEls, { scale: 0, opacity: 0 })
+    tl.to(dotEls, { scale: 1, opacity: 1, duration: Math.min(dur, 0.35), stagger: 0.03 }, start)
   }
 
-  // 按钮组弹入
+  // Subtitle
+  if (subtitleRef.value) {
+    const { start, dur } = at()
+    gsap.set(subtitleRef.value, { opacity: 0, y: 16 })
+    tl.to(subtitleRef.value, { opacity: 1, y: 0, duration: dur }, start)
+  }
+
+  // Buttons
   if (buttonsRef.value) {
     const buttons = buttonsRef.value.querySelectorAll('.btn')
-    gsap.set(buttons, { opacity: 0, scale: 0.8, y: 30 })
-    tl.to(
-      buttons,
-      {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.45,
-        stagger: 0.12,
-        ease: 'back.out(1.5)',
-      },
-      '<0.15'
-    )
+    const { start, dur } = at()
+    gsap.set(buttons, { opacity: 0, y: 16 })
+    tl.to(buttons, { opacity: 1, y: 0, duration: dur, stagger: 0.03 }, start)
   }
 
-  // 看板娘入场动画
+  // Mascot — starts at stagger*1 and runs to endTime, always concurrent with text
   if (heroImageRef.value) {
-    gsap.set(heroImageRef.value, { opacity: 0, x: 80, scale: 0.9 })
-    tl.to(
-      heroImageRef.value,
-      {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: 'power2.out',
-      },
-      '<0.3'
-    )
+    const isDesktop = window.matchMedia('(min-width: 769px)').matches
+    gsap.set(heroImageRef.value, { opacity: 0, x: isDesktop ? 40 : 0, y: isDesktop ? 0 : 20, scale: 0.95 })
+    tl.to(heroImageRef.value, {
+      opacity: 1, x: 0, y: 0, scale: 1,
+      duration: endTime - stagger,
+    }, stagger)
   }
 
-  // 滚动指示器
-  if (scrollIndicatorRef.value) {
-    gsap.set(scrollIndicatorRef.value, { opacity: 0, y: -20 })
-    tl.to(
-      scrollIndicatorRef.value,
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.55,
-      },
-      '<0.2'
-    )
-  }
-
-  // 看板娘轻微浮动
+  // Mascot gentle float loop
   if (heroImageRef.value) {
     gsap.to(heroImageRef.value, {
-      y: -10,
-      duration: 3,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
-      delay: 1.5,
+      y: -8, duration: 3, repeat: -1, yoyo: true,
+      ease: 'sine.inOut', delay: 1.5,
     })
   }
 
@@ -391,27 +339,26 @@ onMounted(() => {
 
   [data-anim='title-word']
     opacity: 0
-    transform: translate3d(0, 50px, 0) rotateX(-90deg)
-    transform-style: preserve-3d
+    transform: translateY(24px)
     will-change: transform, opacity
 
   [data-anim='subtitle']
     opacity: 0
-    transform: translate3d(0, 30px, 0)
+    transform: translateY(16px)
     will-change: transform, opacity
 
   [data-anim='buttons'] .btn
     opacity: 0
-    transform: translate3d(0, 30px, 0) scale(0.8)
+    transform: translateY(16px)
     will-change: transform, opacity
 
   [data-anim='hero-image']
     opacity: 0
-    transform: translate3d(0, 40px, 0) scale(0.9)
+    transform: translateY(20px) scale(0.95)
     will-change: transform, opacity
 
     @media (min-width: 769px)
-      transform: translate3d(80px, 0, 0) scale(0.9)
+      transform: translateX(40px) scale(0.95)
 
 .title-word
   display: inline-block
