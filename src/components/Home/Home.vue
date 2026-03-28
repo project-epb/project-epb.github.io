@@ -9,7 +9,7 @@
       :key='item.id',
       :id='`section-${item.id}`',
       ref='sectionRefs',
-      :class='{ "h-screen": item.id === "frontpage", "py-16 md:py-24": item.id !== "frontpage" && item.id !== "footer", "opacity-0 translate-y-12": !visibleSections.has(index), "opacity-100 translate-y-0": visibleSections.has(index) }'
+      :class='{ "py-10 md:py-16": item.id !== "frontpage" && item.id !== "footer", "opacity-0 translate-y-12": !visibleSections.has(index), "opacity-100 translate-y-0": visibleSections.has(index) }'
     )
       Component.w-full(
         :is='item.component',
@@ -270,17 +270,11 @@ onUnmounted(() => {
   opacity: 0.25
   pointer-events: none
 
-// Hero 区域特殊样式
+// Hero 区域：自然高度，不再强制占满视口
 #section-frontpage
-  height: 100vh
-  max-height: 100vh
-  min-height: 100vh
-
-  // 支持动态视口高度（移动端地址栏）
-  @supports (height: 100dvh)
-    height: 100dvh
-    max-height: 100dvh
-    min-height: 100dvh
+  height: auto
+  min-height: auto
+  max-height: none
 
 // 响应式优化
 @media (max-width: 768px)

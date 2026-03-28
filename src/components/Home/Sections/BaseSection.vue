@@ -1,6 +1,6 @@
 <template lang="pug">
 .home-section-wrapper.w-full.relative.flex.flex-col.items-center.justify-center(
-  :class='{ "min-h-screen": isHero }'
+  :class='{ "hero-wrapper": isHero }'
 )
   slot
   a.jump-anchor.cursor-pointer.text-primary.transition-colors(
@@ -41,14 +41,13 @@ function scrollNext(e: MouseEvent) {
 
 <style scoped lang="sass">
 .jump-anchor
-  position: absolute
-  bottom: 0rem
-  left: 50%
-  transform: translateX(-50%)
+  display: block
+  text-align: center
   font-size: 2.5rem
   animation: jump-btn 1.5s ease 0s infinite alternate
   z-index: 20
   opacity: 0.6
+  padding: 1rem 0
 
 .jump-anchor:hover
   opacity: 1
@@ -59,11 +58,12 @@ function scrollNext(e: MouseEvent) {
 :global([data-is-last] .jump-anchor)
   display: none
 
+.hero-wrapper
+  min-height: 0
+
 @keyframes jump-btn
   from
-    bottom: 0rem
-    transform: translateX(-50%) translateY(0)
+    transform: translateY(0)
   to
-    bottom: 1rem
-    transform: translateX(-50%) translateY(-0.25rem)
+    transform: translateY(-0.5rem)
 </style>

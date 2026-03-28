@@ -1,6 +1,6 @@
 <template lang="pug">
 BaseSection(:show-jump-anchor='false')
-  .about-section.w-full.max-w-6xl.mx-auto.px-4
+  .about-section.w-full.max-w-5xl.mx-auto.px-4
     .text-center.mb-12
       .badge.badge-primary.badge-lg.mb-4 关于 Project-EPB
       h2.text-4xl.font-extrabold.mb-6.bg-gradient-to-r.from-primary.via-secondary.to-accent.bg-clip-text.text-transparent(

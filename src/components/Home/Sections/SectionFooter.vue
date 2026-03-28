@@ -1,6 +1,6 @@
 <template lang="pug">
 .home-section-wrapper.w-full.relative.flex.flex-col.justify-start.mb-24
-  .footer-wrapper.w-full.max-w-6xl.mx-auto.px-4.py-16.flex-1.flex.flex-col.justify-center
+  .footer-wrapper.w-full.max-w-5xl.mx-auto.px-4.py-16.flex-1.flex.flex-col.justify-center
     .text-center.mb-12
       h2.text-4xl.font-extrabold.mb-4.bg-gradient-to-r.from-primary.to-accent.bg-clip-text.text-transparent(
         class='md:text-5xl'
