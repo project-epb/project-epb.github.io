@@ -91,7 +91,7 @@ BaseSection(:is-hero='true')
             .hero-buttons-row.flex.gap-3.justify-center(class='md:justify-start md:gap-4')
               a.btn.btn-primary.flex-1.shadow-2xl.group.relative.overflow-hidden.transition-all.duration-300(
                 class='hover:shadow-primary/50',
-                href='https://epb-wiki.notion.site/',
+                href='https://universe.epb.wiki/notion/?utm_source=epb_home&utm_medium=home_hero',
                 target='_blank',
                 rel='noopener noreferrer'
               )

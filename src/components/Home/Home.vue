@@ -63,7 +63,7 @@ const cardSections: {
     imageSrc:
       'https://r2.epb.wiki/artworks/Original.Main/omain_te_202602_r01_bg.jpg',
     moreHref:
-      'https://zh.moegirl.org.cn/%E6%B2%83%E5%88%A9%E6%9D%B0%E8%AF%BA%C2%B7%E6%A2%85%E5%9B%A0',
+      'https://universe.epb.wiki/notion/1fafaad42d85817fbbf1e1dac2703ed7',
     moreText: '可爱捏',
     description: [
       '沃利杰诺·梅因（Original/Main），世界本源的化身',
@@ -76,7 +76,8 @@ const cardSections: {
     title: '戴图拉',
     subtitle: '「小恶魔」',
     imageSrc: 'https://r2.epb.wiki/artworks/datura/datura_202602_r02_bg.png',
-    moreHref: 'https://epb-wiki.notion.site/datura',
+    moreHref:
+      'https://universe.epb.wiki/notion/1fafaad42d8581048afbcd8ee12faee6',
     moreText: '角色详情',
     description: [
       '迪米·拉米·希希米·米图 Demin Lamin Cicimin Minty',
@@ -85,14 +86,15 @@ const cardSections: {
     ],
   },
   {
-    id: 'sara-lindery',
-    title: '苏凛莉',
+    id: 'sira-lindery',
+    title: '林希雅',
     subtitle: '「小天使」',
     imageSrc: 'https://r2.epb.wiki/artworks/SILI/sili_202602_r01_bg.png',
-    moreHref: 'https://epb-wiki.notion.site/sara-lindery',
+    moreHref:
+      'https://universe.epb.wiki/notion/1fafaad42d85813db7c2e350522b9d83',
     moreText: '角色详情',
     description: [
-      '苏凛莉 Sara Lindery',
+      '林希雅 Sira Lindery',
       '万界规划局研究部雇员',
       'Root node of SILI Network',
     ],
@@ -115,7 +117,7 @@ const cardSections: {
     title: '万界大百科',
     subtitle: '将来过去时官方设定集',
     imageSrc: notionImage.src,
-    moreHref: 'https://epb-wiki.notion.site/',
+    moreHref: 'https://universe.epb.wiki/notion/',
     moreText: '所以小说什么时候发布',
     description: [
       '《将来过去时》官方设定集！',
@@ -124,11 +126,11 @@ const cardSections: {
     ],
   },
   {
-    id: 'sili',
-    title: 'Chatbot SILI',
+    id: 'sili-agent',
+    title: 'SILI agent',
     subtitle: '万界规划局聊天机器人',
     imageSrc: siliImage.src,
-    moreHref: 'https://github.com/project-epb/Chatbot-SILI',
+    moreHref: 'https://github.com/project-epb/SILI-agent',
     moreText: '我要做SILI的🐶',
     description: [
       '“您好，我是SILI”——『IM机械姬』SILI-t138-[Manura]-Invoke-II@LD(A)',
@@ -137,7 +139,7 @@ const cardSections: {
     ],
   },
   {
-    id: 'wiki',
+    id: 'legacy-mw',
     title: '小鱼君和他的朋友们',
     subtitle: '旧版 MediaWiki 站点',
     imageSrc: wikiImage.src,
@@ -150,7 +152,7 @@ const cardSections: {
     ],
   },
   {
-    id: 'inpageedit-next',
+    id: 'ipe-next',
     title: 'InPageEdit NEXT',
     subtitle: 'MediaWiki plugin',
     imageSrc: 'https://r2.epb.wiki/icons/inpageedit/ipe-next-uwu.png',
